@@ -44,9 +44,15 @@ public class WebScraper {
         return url.split("\\s+").length;
     }
 
+    /**
+     * Return how many times word was found in url
+     * @param url the link
+     * @param word the keyword
+     * @return integer
+     */
     public static int oneWordCount(String url, String word) {
         String lowCase = url.toLowerCase();
         String keyWord = word.toLowerCase();
-        return lowCase.split("" + keyWord + "").length - 1;
+        return lowCase.split(keyWord).length - 1;
     }
 }
