@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class WebScraper {
     public static void main(String[] args) {
-        System.out.println(urlToString("https://www.bls.gov/tus/charts/chart9.txt").length());
+        System.out.println(wordCount(urlToString("http://erdani.com/tdpl/hamlet.txt"))); //31,955
+        System.out.println(wordCount(urlToString("https://www.bls.gov/tus/charts/chart9.txt"))); //78
+        System.out.println(wordCount(urlToString("http://tgftp.nws.noaa.gov/data/raw/fz/fzus53.klot.srf.lot.txt"))); // 1021
+        System.out.println(oneWordCount(urlToString("http://erdani.com/tdpl/hamlet.txt"), "Prince"));
     }
 
     /**
@@ -23,5 +26,27 @@ public class WebScraper {
         String contents = urlScanner.useDelimiter("\\A").next();
         urlScanner.close();
         return contents;
+    }
+
+    /**
+     * calculates how many words there are in the url
+     * @param url the url
+     * @return the wordcount in integer
+     */
+    public static int wordCount(String url) {
+//        Scanner in = new Scanner(url);
+//        int count = 0;
+//        while(in.hasNext()) {
+//            in.next();
+//            count++;
+//        }
+//        return count;
+        return url.split("\\s+").length;
+    }
+
+    public static int oneWordCount(String url, String word) {
+        String lowCase = url.toLowerCase();
+        String keyWord = word.toLowerCase();
+        return lowCase.split("" + keyWord + "").length - 1;
     }
 }
